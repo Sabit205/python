@@ -1,9 +1,13 @@
-name: Run Python Script for Server Renewal
+name: Run Server Renewal Script
 
 on:
   schedule:
-    - cron: '* * * * *'  # Run every hour
-  workflow_dispatch:  # Allows manual triggering
+    - cron: '0 0 * * *'    # 00:00 UTC
+    - cron: '0 5 * * *'    # 05:00 UTC
+    - cron: '0 10 * * *'   # 10:00 UTC
+    - cron: '0 15 * * *'   # 15:00 UTC
+    - cron: '0 20 * * *'   # 20:00 UTC
+  workflow_dispatch:       # Manual trigger support
 
 jobs:
   renew_server:
@@ -22,11 +26,9 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install requests
-          pip install python-dotenv
 
       - name: Run server renewal script
         env:
           XSRF_TOKEN: ${{ secrets.XSRF_TOKEN }}
           SESSION_COOKIE: ${{ secrets.SESSION_COOKIE }}
-        run: |
-          python renew.py
+        run: python renew.py
