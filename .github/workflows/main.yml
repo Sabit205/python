@@ -1,0 +1,32 @@
+name: Run Python Script for Server Renewal
+
+on:
+  schedule:
+    - cron: '* * * * *'  # Run every hour
+  workflow_dispatch:  # Allows manual triggering
+
+jobs:
+  renew_server:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests
+          pip install python-dotenv
+
+      - name: Run server renewal script
+        env:
+          XSRF_TOKEN: ${{ secrets.XSRF_TOKEN }}
+          SESSION_COOKIE: ${{ secrets.SESSION_COOKIE }}
+        run: |
+          python renew.py
