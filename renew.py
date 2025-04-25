@@ -3,7 +3,7 @@ import os
 
 def renew_server():
     # Get sensitive information from environment variables
-    xsrf_token = os.getenv('XSRF_TOKEN')  # Get XSRF token from environment variables
+    xsrf_token = os.getenv('XSRF_TOKE')  # Get XSRF token from environment variables
     session_cookie = os.getenv('SESSION_COOKIE')  # Get session cookie from environment variables
 
     if not xsrf_token or not session_cookie:
