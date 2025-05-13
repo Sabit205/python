@@ -10,7 +10,7 @@ def renew_server():
         print("Error: XSRF_TOKEN or SESSION_COOKIE is not set.")
         return
 
-    url = 'https://panel.eternalzero.cloud/api/client/freeservers/e96ce0bd-a984-4d67-976e-6effb8c863ce/renew'
+    url = 'https://gpanel.eternalzero.cloud/api/client/freeservers/e96ce0bd-a984-4d67-976e-6effb8c863ce/renew'
 
     headers = {
         'Content-Type': 'application/json',
