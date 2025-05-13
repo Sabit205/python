@@ -2,14 +2,12 @@ name: Run Server Renewal Script
 
 on:
   schedule:
-    - cron: '0 0 * * *'    # 00:00 UTC
-    - cron: '0 4 * * *'    # 04:00 UTC
-    - cron: '0 8 * * *'    # 08:00 UTC
-    - cron: '0 12 * * *'   # 12:00 UTC
-    - cron: '0 16 * * *'   # 16:00 UTC
-    - cron: '0 20 * * *'   # 20:00 UTC
-    - cron: '0 23 * * *'   # 23:00 UTC
-  workflow_dispatch:       # Manual trigger support
+    - cron: '0 0 * * *'     # 00:00 UTC
+    - cron: '48 4 * * *'    # 04:48 UTC
+    - cron: '36 9 * * *'    # 09:36 UTC
+    - cron: '24 14 * * *'   # 14:24 UTC
+    - cron: '12 19 * * *'   # 19:12 UTC
+  workflow_dispatch:        # Manual trigger support
 
 jobs:
   renew_server:
