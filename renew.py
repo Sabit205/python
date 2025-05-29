@@ -1,5 +1,6 @@
 import requests
 import os
+import urllib.parse
 
 def renew_server():
     xsrf_token_raw = os.getenv('XSRF_TOKEN')
@@ -9,8 +10,7 @@ def renew_server():
         print("Error: XSRF_TOKEN or SESSION_COOKIE is not set.")
         return
 
-    # Use the raw token as-is
-    xsrf_token = xsrf_token_raw
+    xsrf_token = urllib.parse.unquote(xsrf_token_raw)
 
     url = 'https://gpanel.eternalzero.cloud/api/client/freeservers/e96ce0bd-a984-4d67-976e-6effb8c863ce/renew'
 
@@ -20,11 +20,10 @@ def renew_server():
         'Accept': 'application/json',
         'User-Agent': 'Mozilla/5.0',
         'X-Requested-With': 'XMLHttpRequest',
-        'Referer': 'https://gpanel.eternalzero.cloud/',
     }
 
     cookies = {
-        'XSRF-TOKEN': xsrf_token_raw,  # raw token in cookie
+        'XSRF-TOKEN': xsrf_token_raw,  # Raw token in cookie
         'pterodactyl_session': session_cookie
     }
 
